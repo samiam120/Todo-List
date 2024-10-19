@@ -13,6 +13,17 @@ export function createTask(
   let _notes = notes;
   let _checkList = checkList;
 
+  function printTask(){
+    return {
+        title:_title,
+        description:_description,
+        dueDate:_dueDate,
+        priority:_priority,
+        notes:_notes,
+        checkList:_checkList,
+    }
+  }
+
   function setTaskTitle(title) {
     _title = title;
   }
@@ -65,6 +76,7 @@ export function createTask(
   }
 
   return {
+    printTask,
     setTaskTitle,
     getTaskTitle,
     setTaskDescription,
