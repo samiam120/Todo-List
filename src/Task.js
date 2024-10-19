@@ -13,15 +13,6 @@ export function createTask(
   let _notes = notes;
   let _checkList = checkList;
 
-  function setTaskName(name) {
-    _name = name;
-    return _name;
-  }
-
-  function getTaskName() {
-    return _name;
-  }
-
   function setTaskTitle(title) {
     _title = title;
   }
@@ -69,6 +60,10 @@ export function createTask(
     return (_checkList = !_checkList);
   }
 
+  function isCompletedTask(){
+    return toggleTaskCheckList();
+  }
+
   return {
     setTaskTitle,
     getTaskTitle,
@@ -81,5 +76,6 @@ export function createTask(
     createTaskNote,
     getTaskNotes,
     toggleTaskCheckList,
+    isCompletedTask,
   };
 }
