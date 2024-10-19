@@ -1,5 +1,4 @@
 export function createTask(
-  name,
   title,
   description,
   dueDate,
@@ -7,7 +6,6 @@ export function createTask(
   notes,
   checkList
 ) {
-  let _name = name;
   let _title = title;
   let _description = description;
   let _dueDate = dueDate;
@@ -72,10 +70,10 @@ export function createTask(
   }
 
   return {
-    setTaskName,
-    getTaskName,
     setTaskTitle,
     getTaskTitle,
+    setTaskDescription,
+    getTaskDescription,
     setTaskDueDate,
     getTaskDueDate,
     setTaskPriority,
