@@ -6,21 +6,24 @@ export function createProject(title) {
     _tasksInProject.push(task);
   }
 
-  function getTasks() {
-    return _tasksInProject;
+  function printProject() {
+    return {
+      name:_projectTitle,
+      tasks:_tasksInProject.map(task => task.printTask()),
+    }
   }
-  function setTitle(title) {
+  function setProjectTitle(title) {
     _projectTitle = title;
   }
 
-  function getTitle() {
+  function getProjectTitle() {
     return _projectTitle;
   }
 
   return {
     addTaskToProject,
-    getTasks,
-    setTitle,
-    getTitle,
+    printProject,
+    setProjectTitle,
+    getProjectTitle,
   };
 }
