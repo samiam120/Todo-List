@@ -1,21 +1,21 @@
-export function createTaskManager(){
-    let _tasks = [];
+export function createTaskManager() {
+  let _tasks = [];
 
-    function addTask(task){
-        _tasks.push(task);
-    }
+  function addTask(task) {
+    _tasks.push(task);
+  }
 
-    function deleteTask(index){
-        _tasks.splice(index, 1);
-    }
+  function deleteTask(index) {
+    _tasks.splice(index, 1);
+  }
 
-    function listTasks(){
-       return  _tasks.map(task => task.printTask());
-    }
+  function listTasks() {
+    return { tasks: _tasks.map((task) => task.printTask()) };
+  }
 
-    return{
-        addTask,
-        deleteTask,
-        listTasks
-    }
+  return {
+    addTask,
+    deleteTask,
+    listTasks,
+  };
 }

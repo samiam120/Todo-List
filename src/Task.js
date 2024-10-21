@@ -13,15 +13,15 @@ export function createTask(
   let _notes = notes;
   let _checkList = checkList;
 
-  function printTask(){
+  function printTask() {
     return {
-        title:_title,
-        description:_description,
-        dueDate:_dueDate,
-        priority:_priority,
-        notes:_notes,
-        checkList:_checkList,
-    }
+      title: _title,
+      description: _description,
+      dueDate: _dueDate,
+      priority: _priority,
+      notes: _notes,
+      checkList: _checkList,
+    };
   }
 
   function setTaskTitle(title) {
@@ -71,7 +71,7 @@ export function createTask(
     return (_checkList = !_checkList);
   }
 
-  function isCompletedTask(){
+  function isCompletedTask() {
     return toggleTaskCheckList();
   }
 

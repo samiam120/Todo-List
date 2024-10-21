@@ -1,16 +1,22 @@
+import { createTaskManager } from "./TaskManager";
+
 export function createProject(title) {
-  const _tasksInProject = [];
   let _projectTitle = title;
+  let _manager = createTaskManager();
 
   function addTaskToProject(task) {
-    _tasksInProject.push(task);
+    _manager.addTask(task);
+  }
+
+  function deleteTaskInProject(index) {
+    _manager.deleteTask(task);
   }
 
   function printProject() {
     return {
-      name:_projectTitle,
-      tasks:_tasksInProject.map(task => task.printTask()),
-    }
+      name: _projectTitle,
+      tasks: _manager.listTasks(),
+    };
   }
   function setProjectTitle(title) {
     _projectTitle = title;
@@ -25,5 +31,6 @@ export function createProject(title) {
     printProject,
     setProjectTitle,
     getProjectTitle,
+    deleteTaskInProject,
   };
 }
