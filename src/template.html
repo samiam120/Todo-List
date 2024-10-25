@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <div class="sideBar">
-        <div class="Tasks">Daily Tasks</div>
+        <div class="Tasks">Inbox</div>
         <div class="Projects">
           My Projects
           <ul>
@@ -19,7 +19,31 @@
         </div>
       </div>
       <div class="mainContent">
-        <div class="taskContainer"></div>
+        <div class="taskContainer">
+          <div class="addTaskBtnContainer">
+            <button class="addTaskBtn">add Task</button>
+          </div>
+          <div class="dialogContainer">
+            <dialog>
+              <form action="">
+                <label for="title">Title</label>
+                <input id="title" type="text" placeholder="Title" required />
+                <label for="description">description</label>
+                <input id="description" type="text" placeholder="description" />
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" />
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority">
+                  <option value="">low</option>
+                  <option value="">medium</option>
+                  <option value="">high</option>
+                </select>
+                <button class="close">cancel</button>
+                <button type="submit" class="submit">Add Task</button>
+              </form>
+            </dialog>
+          </div>
+        </div>
       </div>
     </div>
   </body>
