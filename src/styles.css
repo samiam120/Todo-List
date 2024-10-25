@@ -29,6 +29,40 @@ html {
   border: 1px solid blue;
 }
 
-.sideBar{
-    padding: 15px;
+.sideBar {
+  padding: 15px;
+}
+
+ul {
+  list-style: none;
+}
+
+
+.dialogContainer {
+  height: 200px;
+  width: 500px;
+  border: 1px solid blue;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+dialog {
+  width: 500px;
+  height: 200px;
+  left: 50%;
+  position: relative;
+  top: 25px;
+  margin-left: -100px;
+}
+
+/* Dialog Styles */
+input,
+select {
+  display: block;
+}
+#description {
+  width: 100%;
+}
+#title {
+  width: 50%;
 }
