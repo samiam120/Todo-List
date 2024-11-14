@@ -1,29 +1,26 @@
-export function createTask(
-  title,
-  description,
-  dueDate,
-  priority,
-  notes,
-  checkList
-) {
+let id = 0; 
+export function createTask(title, description, dueDate, priority, checkList) {
+  let _id = id++;
   let _title = title;
   let _description = description;
   let _dueDate = dueDate;
   let _priority = priority;
-  let _notes = notes;
   let _checkList = checkList;
 
-  function printTask() {
+  function getTask() {
     return {
+      id: _id,
       title: _title,
       description: _description,
       dueDate: _dueDate,
       priority: _priority,
-      notes: _notes,
       checkList: _checkList,
     };
   }
 
+  function getId(){
+    return _id;
+  }
   function setTaskTitle(title) {
     _title = title;
   }
@@ -34,7 +31,6 @@ export function createTask(
 
   function setTaskDescription(description) {
     _description = description;
-    return _description;
   }
 
   function getTaskDescription() {
@@ -58,15 +54,6 @@ export function createTask(
     return _priority;
   }
 
-  function createTaskNote(notes) {
-    _notes = notes;
-    return _notes;
-  }
-
-  function getTaskNotes() {
-    return _notes;
-  }
-
   function toggleTaskCheckList() {
     return (_checkList = !_checkList);
   }
@@ -76,7 +63,8 @@ export function createTask(
   }
 
   return {
-    printTask,
+    getId,
+    getTask,
     setTaskTitle,
     getTaskTitle,
     setTaskDescription,
@@ -85,8 +73,6 @@ export function createTask(
     getTaskDueDate,
     setTaskPriority,
     getTaskPriority,
-    createTaskNote,
-    getTaskNotes,
     toggleTaskCheckList,
     isCompletedTask,
   };
