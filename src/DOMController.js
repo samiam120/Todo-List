@@ -1,18 +1,54 @@
+import { closeDialog } from "./DialogController";
+import projectManager from "./ProjectManager";
 import { createProject } from "./Projects";
 
-export function appendProject() {
+let selectedId = 0;
+
+const inbox = createProject("Inbox");
+projectManager.addProject(inbox);
+
+export function renderProjects() {
+  const ul = document.querySelector(".project-list");
+  ul.textContent = "";
+  for (let [key, project] of projectManager.entries()) {
+    const projectContent = project.getProjectContent();
+    const li = document.createElement("li");
+    li.textContent = projectContent.name;
+    li.dataset.id = key;
+
+    li.addEventListener("click", () => {
+      selectedId = key;
+    });
+    console.log(li.dataset.id);
+
+    ul.appendChild(li);
+  }
+}
+
+// event listeners
+function addProjectListener() {
+  const addProjectBtn = document.querySelector("#project-dialog-btn");
   const projectTitle = document.querySelector("#project-Title");
 
-  //const project = createProject(projectTitle.textContent);
+  addProjectBtn.addEventListener("click", () => {
+    if (projectTitle.value) {
+      const proj = createProject(projectTitle.value);
+      projectManager.addProject(proj);
+      projectTitle.value = "";
+      renderProjects();
+      closeDialog(document.querySelector("#project-Dialog"));
+    } else {
+      console.log("return a valid project name");
+    }
+  });
+}
 
-  const ul = document.querySelector(".project-list");
-  const li = document.createElement("li");
+export function setProjectEventListeners() {
+  addProjectListener();
+}
 
-  li.textContent = projectTitle.value;
-  
-  ul.appendChild(li);
+export function addTaskToProject(projectId, task) {}
 
-  projectTitle.value = "";
-
-  
+export function renderTasks(projectId) {
+  const proj = projectManager.getProjectById(projectId);
 }
