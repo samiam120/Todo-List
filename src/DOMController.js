@@ -24,9 +24,19 @@ function renderTasks() {
   taskContainer.textContent = "";
   for (let i = 0; i < listOfTasks.length; i++) {
     const div = document.createElement("div");
-    const li = document.createElement("li");
-    li.textContent = listOfTasks[i].title;
-    div.appendChild(li);
+    div.classList.add("task");
+
+    const titleLi = document.createElement("li");
+    const descriptionLi = document.createElement("li");
+    const dueDateLi = document.createElement("li");
+
+    titleLi.textContent = listOfTasks[i].title;
+    descriptionLi.textContent = listOfTasks[i].description;
+    dueDateLi.textContent = listOfTasks[i].dueDate;
+
+    div.appendChild(titleLi);
+    div.appendChild(descriptionLi);
+    div.appendChild(dueDateLi);
     taskContainer.append(div);
   }
 }
