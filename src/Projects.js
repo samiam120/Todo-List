@@ -1,41 +1,52 @@
 let id = 0;
 
-export function createProject(title) {
+export const createProject = (title) => {
   let _id = id++;
   let _projectTitle = title;
   let tasks = [];
 
-  function addTaskToProject(task) {
+  const getId = () => {
+    return _id;
+  };
+
+  const addTaskToProject = (task) => {
     tasks.push(task);
-  }
+  };
 
-  function deleteTaskInProject(id) {
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].getId() === id) {
-        tasks.splice(i, 1);
-      }
-    }
-  }
+  const deleteTaskInProject = (id) => {
+    tasks = tasks.filter((task) => task.getId() !== id);
+  };
 
-  function getProjectContent() {
+  const getProjectContent = () => {
     return {
+      id: _id,
       name: _projectTitle,
-      tasks: tasks.map(x => x.getTask()),
+      tasks: tasks.map((x) => x.getTask()),
     };
-  }
-  function setProjectTitle(title) {
+  };
+  const setProjectTitle = (title) => {
     _projectTitle = title;
-  }
+  };
 
-  function getProjectTitle() {
+  const getProjectTitle = () => {
     return _projectTitle;
+  };
+
+  const editTaskInProject = (taskId, newTask) => {
+    const taskToEdit = tasks.find((task) => task.getId() === taskId);
+    taskToEdit.setTaskTitle(newTask.title);
+    taskToEdit.setTaskDescription(newTask.description);
+    taskToEdit.setTaskDueDate(newTask.dueDate);
+    taskToEdit.setTaskPriority(newTask.priority);
   }
 
   return {
+    getId,
     addTaskToProject,
     getProjectContent,
     setProjectTitle,
     getProjectTitle,
     deleteTaskInProject,
+    editTaskInProject,
   };
-}
+};
