@@ -1,4 +1,5 @@
 import { closeDialog } from "./DialogController";
+import LocalStorage from "./localStorage";
 import projectManager from "./ProjectManager";
 import { createProject } from "./Projects";
 import { createTask } from "./Task";
@@ -7,64 +8,59 @@ let selectedId = 0;
 let isEditing = false;
 let taskToEdit = null;
 
-const inbox = createProject("Inbox");
-projectManager.addProject(inbox);
-const task1 = createTask("task 1", "description 1", "09/09/2025", "low", false);
-const task2 = createTask("task 2", "description 2", "09/09/2025", "low", false);
-const task3 = createTask("task 3", "description 3", "09/09/2025", "low", false);
-
-projectManager.addTaskToProject(0, task1);
-projectManager.addTaskToProject(0, task2);
-projectManager.addTaskToProject(0, task3);
-
+LocalStorage.load();
 function renderTasks() {
   const currentProject = projectManager.getProjectById(selectedId);
-  const listOfTasks = currentProject.getProjectContent().tasks;
+  if (currentProject) {
+    const listOfTasks = currentProject.getProjectContent().tasks;
 
-  const taskContainer = document.querySelector(".taskList");
-  taskContainer.textContent = "";
+    const taskContainer = document.querySelector(".taskList");
+    taskContainer.textContent = "";
 
-  for (let i = 0; i < listOfTasks.length; i++) {
-    const div = document.createElement("div");
-    div.classList.add("taskDiv");
-    div.dataset.id = listOfTasks[i].id;
+    for (let i = 0; i < listOfTasks.length; i++) {
+      const div = document.createElement("div");
+      div.classList.add("taskDiv");
+      div.dataset.id = listOfTasks[i].id;
 
-    //container for action buttons
-    const actionButtons = document.createElement("div");
-    actionButtons.classList.add("task-actions");
+      //container for action buttons
+      const actionButtons = document.createElement("div");
+      actionButtons.classList.add("task-actions");
 
-    const editBtn = document.createElement("button");
-    editBtn.innerHTML = '<i class="fas  fa-edit">edit</i>';
-    editBtn.classList.add("edit-btn");
-    editBtn.dataset.id = listOfTasks[i].id;
+      const editBtn = document.createElement("button");
+      editBtn.innerHTML = '<i class="fas  fa-edit">edit</i>';
+      editBtn.classList.add("edit-btn");
+      editBtn.dataset.id = listOfTasks[i].id;
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = '<i class="fas fa-trash">delete</i>';
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.dataset.id = listOfTasks[i].id;
+      const deleteBtn = document.createElement("button");
+      deleteBtn.innerHTML = '<i class="fas fa-trash">delete</i>';
+      deleteBtn.classList.add("delete-btn");
+      deleteBtn.dataset.id = listOfTasks[i].id;
 
-    actionButtons.appendChild(editBtn);
-    actionButtons.appendChild(deleteBtn);
-    div.appendChild(actionButtons);
+      actionButtons.appendChild(editBtn);
+      actionButtons.appendChild(deleteBtn);
+      div.appendChild(actionButtons);
 
-    const infoUl = document.createElement("ul");
-    const titleLi = document.createElement("li");
-    const descriptionLi = document.createElement("li");
-    const dueDateLi = document.createElement("li");
+      const infoUl = document.createElement("ul");
+      const titleLi = document.createElement("li");
+      const descriptionLi = document.createElement("li");
+      const dueDateLi = document.createElement("li");
 
-    titleLi.textContent = listOfTasks[i].title;
-    descriptionLi.textContent = listOfTasks[i].description;
-    dueDateLi.textContent = listOfTasks[i].dueDate;
+      titleLi.textContent = listOfTasks[i].title;
+      descriptionLi.textContent = listOfTasks[i].description;
+      dueDateLi.textContent = listOfTasks[i].dueDate;
 
-    infoUl.appendChild(titleLi);
-    infoUl.appendChild(descriptionLi);
-    infoUl.appendChild(dueDateLi);
+      infoUl.appendChild(titleLi);
+      infoUl.appendChild(descriptionLi);
+      infoUl.appendChild(dueDateLi);
 
-    div.appendChild(infoUl);
-    taskContainer.append(div);
+      div.appendChild(infoUl);
+      taskContainer.append(div);
 
-    deleteBtn.addEventListener("click", handleDeleteTask);
-    editBtn.addEventListener("click", handleEditTask);
+      deleteBtn.addEventListener("click", handleDeleteTask);
+      editBtn.addEventListener("click", handleEditTask);
+    }
+  }else{
+    console.log(`Project not found for task`);
   }
 }
 function handleDeleteTask(event) {
@@ -180,17 +176,20 @@ function addTaskListener() {
 
       renderTasks();
       closeDialog(document.querySelector("#task-Dialog"));
-      console.log(task);
     } else {
       console.log("Task title required");
     }
-    isEditing = false;
   });
 }
 
 function renderProjects() {
   const ul = document.querySelector(".project-list");
   ul.textContent = "";
+  if (projectManager.size === 0) {
+    const li = document.createElement("li");
+    li.textContent = "No projects";
+    ul.appendChild(li);
+  }
   for (let [key, project] of projectManager.entries()) {
     const projectContent = project.getProjectContent();
     const li = document.createElement("li");
