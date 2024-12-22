@@ -1,3 +1,4 @@
+import LocalStorage from "./localStorage";
 //singleton pattern
 class ProjectManager {
   constructor() {
@@ -10,10 +11,12 @@ class ProjectManager {
 
   addProject(project) {
     this.projectManager.set(project.getId(), project);
+    LocalStorage.save();
   }
 
   removeProject(id) {
     this.projectManager.delete(id);
+    LocalStorage.save();
   }
 
   displayProject(id) {
@@ -32,18 +35,33 @@ class ProjectManager {
     return this.projectManager.values();
   }
 
+  clear() {
+    this.projectManager.clear();
+  }
+
   addTaskToProject(projectId, task) {
     const proj = this.getProjectById(projectId);
+    if(!proj){
+      console.error("Error: project not found");
+      return;
+    }
     proj.addTaskToProject(task);
+    LocalStorage.save();
+
+ 
+      
   }
   deleteTaskFromProject(projectId, taskId) {
     const proj = this.getProjectById(projectId);
     proj.deleteTaskInProject(taskId);
+    LocalStorage.save();
+
   }
 
   editTaskFromProject(projectId, currentTaskId, newTask) {
     const proj = this.getProjectById(projectId);
     proj.editTaskInProject(currentTaskId, newTask);
+    LocalStorage.save();
   }
 
   printManager() {
