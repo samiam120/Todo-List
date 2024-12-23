@@ -39,6 +39,10 @@ class ProjectManager {
     this.projectManager.clear();
   }
 
+  size(){
+    return this.projectManager.size;
+  }
+
   addTaskToProject(projectId, task) {
     const proj = this.getProjectById(projectId);
     if(!proj){

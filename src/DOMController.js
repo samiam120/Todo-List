@@ -1,3 +1,4 @@
+import { de } from "date-fns/locale";
 import { closeDialog } from "./DialogController";
 import LocalStorage from "./localStorage";
 import projectManager from "./ProjectManager";
@@ -59,7 +60,7 @@ function renderTasks() {
       deleteBtn.addEventListener("click", handleDeleteTask);
       editBtn.addEventListener("click", handleEditTask);
     }
-  }else{
+  } else {
     console.log(`Project not found for task`);
   }
 }
@@ -70,6 +71,7 @@ function handleDeleteTask(event) {
 }
 
 function handleEditTask(event) {
+  event.preventDefault();
   const taskId = parseInt(event.currentTarget.dataset.id);
 
   const task = projectManager
@@ -184,8 +186,9 @@ function addTaskListener() {
 
 function renderProjects() {
   const ul = document.querySelector(".project-list");
+
   ul.textContent = "";
-  if (projectManager.size === 0) {
+  if (projectManager.size() === 0) {
     const li = document.createElement("li");
     li.textContent = "No projects";
     ul.appendChild(li);
@@ -193,6 +196,7 @@ function renderProjects() {
   for (let [key, project] of projectManager.entries()) {
     const projectContent = project.getProjectContent();
     const li = document.createElement("li");
+
     li.textContent = projectContent.name;
     li.dataset.id = key;
 
@@ -203,8 +207,24 @@ function renderProjects() {
     });
     console.log(li.dataset.id);
 
+    //delete project btn
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.textContent = "delete";
+    deleteBtn.dataset.id = key;
+    li.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", handleDeleteProject);
+
     ul.appendChild(li);
   }
+}
+
+function handleDeleteProject(event) {
+  const projectId = parseInt(event.currentTarget.dataset.id);
+  projectManager.removeProject(projectId);
+  selectedId = 0;
+  renderProjects();
+  renderTasks();
 }
 
 // event listeners
