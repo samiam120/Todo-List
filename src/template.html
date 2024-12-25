@@ -8,41 +8,72 @@
   <body>
     <div class="container">
       <div class="sideBar">
-        <div class="Tasks">Inbox</div>
+        <button id="add-Project" class="add-btn">add Project</button>
+
         <div class="Projects">
-          My Projects
-          <ul>
-            <li>Proj1</li>
-            <li>Proj2</li>
-            <li>Proj3</li>
-          </ul>
+          <h3>My Projects</h3>
+          <ul class="project-list"></ul>
         </div>
+        <dialog id="project-Dialog">
+          <div class="form-container">
+            <form action="" class="form">
+              <div class="form-group">
+                <label for="project-Title">Project Name</label>
+                <input type="text" id="project-Title" required />
+              </div>
+              <button id="project-dialog-btn" class="add-btn">add Project</button>
+            </form>
+            <button class="closeProject close-btn">close</button>
+          </div>
+        </dialog>
       </div>
       <div class="mainContent">
+        
         <div class="taskContainer">
+                      <button class="addTaskBtn add-btn">add Task</button>
+
           <div class="addTaskBtnContainer">
-            <button class="addTaskBtn">add Task</button>
           </div>
           <div class="dialogContainer">
-            <dialog>
-              <form action="">
-                <label for="title">Title</label>
-                <input id="title" type="text" placeholder="Title" required />
-                <label for="description">description</label>
-                <input id="description" type="text" placeholder="description" />
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate" />
-                <label for="priority">Priority</label>
-                <select name="priority" id="priority">
-                  <option value="">low</option>
-                  <option value="">medium</option>
-                  <option value="">high</option>
-                </select>
-                <button class="close">cancel</button>
-                <button type="submit" class="submit">Add Task</button>
-              </form>
+            <dialog id="task-Dialog">
+              <div class="form-container">
+                <form action="" class="form">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input
+                      id="title"
+                      type="text"
+                      placeholder="Title"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">description</label>
+                    <input
+                      id="description"
+                      type="text"
+                      placeholder="description"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" />
+                  </div>
+                  <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                      <option value="low">low</option>
+                      <option value="medium">medium</option>
+                      <option value="high">high</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="addTask add-btn" >Add Task</button>
+                </form>
+                <button class="close close-btn">cancel</button>
+              </div>
             </dialog>
           </div>
+          <div class="taskList"></div>
         </div>
       </div>
     </div>
