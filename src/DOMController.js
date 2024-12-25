@@ -33,6 +33,7 @@ function renderTasks() {
       editBtn.dataset.id = listOfTasks[i].id;
 
       const deleteBtn = document.createElement("button");
+      deleteBtn.classList.add('close-btn');
       deleteBtn.innerHTML = '<i class="fas fa-trash">delete</i>';
       deleteBtn.classList.add("delete-btn");
       deleteBtn.dataset.id = listOfTasks[i].id;
@@ -61,7 +62,8 @@ function renderTasks() {
       editBtn.addEventListener("click", handleEditTask);
     }
   } else {
-    console.log(`Project not found for task`);
+    const taskContainer = document.querySelector(".taskList");
+    taskContainer.textContent = "No tasks";
   }
 }
 function handleDeleteTask(event) {
@@ -210,6 +212,7 @@ function renderProjects() {
     //delete project btn
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("deleteBtn");
+    deleteBtn.classList.add("close-btn");
     deleteBtn.textContent = "delete";
     deleteBtn.dataset.id = key;
     li.appendChild(deleteBtn);

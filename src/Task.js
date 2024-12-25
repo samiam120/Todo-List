@@ -1,13 +1,20 @@
-let id = 0; 
-export function createTask(title, description, dueDate, priority, checkList) {
+import {format} from "date-fns";
+let id = 0;
+export const createTask = (
+  title,
+  description,
+  dueDate,
+  priority,
+  checkList
+) => {
   let _id = id++;
   let _title = title;
   let _description = description;
-  let _dueDate = dueDate;
+  let _dueDate = dueDate ;
   let _priority = priority;
   let _checkList = checkList;
 
-  function getTask() {
+  const getTask = () => {
     return {
       id: _id,
       title: _title,
@@ -16,54 +23,62 @@ export function createTask(title, description, dueDate, priority, checkList) {
       priority: _priority,
       checkList: _checkList,
     };
-  }
+  };
 
-  function getId(){
+  const getId = () => {
     return _id;
-  }
-  function setTaskTitle(title) {
+  };
+  const setId = (id) => {
+    _id = id;
+  };
+
+  const setTaskTitle = (title) => {
     _title = title;
-  }
+  };
 
-  function getTaskTitle() {
+  const getTaskTitle = () => {
     return _title;
-  }
+  };
 
-  function setTaskDescription(description) {
+  const setTaskDescription = (description) => {
     _description = description;
-  }
+  };
 
-  function getTaskDescription() {
+  const getTaskDescription = () => {
     return _description;
-  }
+  };
 
-  function setTaskDueDate(dueDate) {
+  const setTaskDueDate = (dueDate) => {
+    if(!dueDate) {
+      return;
+    }
     _dueDate = dueDate;
-  }
+  };
 
-  function getTaskDueDate() {
+  const getTaskDueDate = () => {
     return _dueDate;
-  }
+  };
 
-  function setTaskPriority(priority) {
+  const setTaskPriority = (priority) => {
     _priority = priority;
     return _priority;
-  }
+  };
 
-  function getTaskPriority() {
+  const getTaskPriority = () => {
     return _priority;
-  }
+  };
 
-  function toggleTaskCheckList() {
+  const toggleTaskCheckList = () => {
     return (_checkList = !_checkList);
-  }
+  };
 
-  function isCompletedTask() {
-    return toggleTaskCheckList();
-  }
+  const isCompletedTask = () => {
+    return _checkList;
+  };
 
   return {
     getId,
+    setId,
     getTask,
     setTaskTitle,
     getTaskTitle,
@@ -76,4 +91,4 @@ export function createTask(title, description, dueDate, priority, checkList) {
     toggleTaskCheckList,
     isCompletedTask,
   };
-}
+};

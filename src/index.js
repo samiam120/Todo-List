@@ -1,8 +1,6 @@
 import "./styles.css";
-import {dialogController} from "./DialogController"
-import { initEventListeners } from "./EventListeners";
-
+import { dialogController } from "./DialogController";
+import { setProjectEventListeners } from "./DOMController";
 
 dialogController();
-
-initEventListeners();
+setProjectEventListeners();

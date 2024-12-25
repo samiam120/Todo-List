@@ -1,8 +1,8 @@
-function openDialog(dialog) {
+export function openDialog(dialog) {
   dialog.showModal();
 }
 
-function closeDialog(dialog) {
+export function closeDialog(dialog) {
   dialog.close();
 }
 
@@ -16,7 +16,6 @@ function taskDialog() {
   const taskDialog = document.querySelector("#task-Dialog");
   const addTaskBtn = document.querySelector(".addTaskBtn");
   const closeBtn = document.querySelector(".close");
-
   addTaskBtn.addEventListener("click", () => openDialog(taskDialog));
   closeBtn.addEventListener("click", () => closeDialog(taskDialog));
 }
