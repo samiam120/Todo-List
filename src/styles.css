@@ -2,67 +2,205 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 body,
 html {
-  border: 1px dashed pink;
   height: 100vh;
 }
 
 .container {
   height: 100%;
   display: grid;
-  grid-template-columns: 300px 5fr;
+  grid-template-columns: 500px 5fr;
 }
+
 
 .mainContent {
   width: 100%;
-  border: 3px solid black;
   display: flex;
   justify-content: center;
 }
 
 .taskContainer {
-  width: 1000px;
-  height: 100%;
-  border: 1px solid blue;
+  width: 99%;
+  height: 99%;
+  top: 200px;
 }
 
 .sideBar {
   padding: 15px;
 }
 
+
 ul {
   list-style: none;
 }
 
+.Projects h3 {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-top: 1rem;
+}
+
+.project-list {
+  margin-top: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.taskList {
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
+}
+
+.taskDiv {
+  position: relative;
+  padding: 1rem 1rem 1rem 3rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.taskDiv::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #333;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2 ease;
+}
+
+.taskDiv:hover::before {
+  background-color: rgba(51, 51, 51, 0.1);
+}
+
+.task-actions {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.taskDiv:hover .task-actions {
+  opacity: 1;
+}
+
+.task-actions button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  color: black;
+  z-index: 1;
+}
+
+.task-actions button:hover {
+  color: #333;
+}
+
+.deleteBtn {
+  left: 50%;
+  transform: translateX(50%);
+}
+
+.form-container {
+  width: 400px;
+  background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.form button:active {
+  scale: 0.95;
+}
+
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-container .form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-container .form .form-group label {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid #414141;
+}
+
+.form-container .form-group input::placeholder {
+  opacity: 0.5;
+}
 
 .dialogContainer {
-  height: 200px;
-  width: 500px;
-  border: 1px solid blue;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-dialog {
-  width: 500px;
-  height: 200px;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  position: relative;
-  top: 25px;
-  margin-left: -100px;
+  transform: translate(-50%, -50%);
 }
 
-/* Dialog Styles */
-input,
-select {
-  display: block;
+button{
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 50px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
-#description {
-  width: 100%;
+
+button:hover {
+  box-shadow: 0 0 15px #6fc5ff50;
+  transform: scale(1.05);
 }
-#title {
-  width: 50%;
+
+button {
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.95);
 }
+
+button.add-btn {
+  background-color: #3d94cf;
+}
+
+button.close-btn{
+  background-color: rgb(236, 96, 96);
+}
+
+.taskContainer{
+  margin-top: 12px;
+}
+
