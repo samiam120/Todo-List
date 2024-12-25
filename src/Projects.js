@@ -1,3 +1,5 @@
+import LocalStorage from "./localStorage";
+
 let id = 0;
 
 export const createProject = (title) => {
@@ -8,9 +10,13 @@ export const createProject = (title) => {
   const getId = () => {
     return _id;
   };
+  const setId = (id) => {
+    _id = id;
+  }
 
   const addTaskToProject = (task) => {
     tasks.push(task);
+    LocalStorage.save();
   };
 
   const deleteTaskInProject = (id) => {
@@ -38,9 +44,11 @@ export const createProject = (title) => {
     taskToEdit.setTaskDescription(newTask.description);
     taskToEdit.setTaskDueDate(newTask.dueDate);
     taskToEdit.setTaskPriority(newTask.priority);
+
   }
 
   return {
+    setId,
     getId,
     addTaskToProject,
     getProjectContent,
