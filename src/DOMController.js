@@ -1,4 +1,3 @@
-import { de } from "date-fns/locale";
 import { closeDialog } from "./DialogController";
 import LocalStorage from "./localStorage";
 import projectManager from "./ProjectManager";
@@ -9,7 +8,6 @@ let selectedId = 0;
 let isEditing = false;
 let taskToEdit = null;
 
-LocalStorage.load();
 function renderTasks() {
   const currentProject = projectManager.getProjectById(selectedId);
   if (currentProject) {
@@ -249,6 +247,7 @@ function addProjectListener() {
 }
 
 export function setProjectEventListeners() {
+  LocalStorage.load();
   addTaskListener();
   renderTasks();
   renderProjects();

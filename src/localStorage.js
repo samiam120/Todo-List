@@ -41,7 +41,7 @@ class LocalStorage {
         []
       );
       defaultTask.setId(0);
-      defaultProject.addTaskToProject(defaultTask);
+      projectManager.addTaskToProject(defaultProject.getId(), defaultTask);
 
       const defaultTask2 = createTask(
         "Walk the dog",
@@ -49,8 +49,8 @@ class LocalStorage {
         "2023-03-15",
         "medium"
       );
-      defaultTask2.setId(2);
-      defaultProject.addTaskToProject(defaultTask2);
+      defaultTask2.setId(1);
+      projectManager.addTaskToProject(defaultProject.getId(), defaultTask2);
 
       const defaultTask3 = createTask(
         "Do laundry",
@@ -58,8 +58,8 @@ class LocalStorage {
         "2023-03-15",
         "high"
       );
-      defaultTask3.setId(3);
-      defaultProject.addTaskToProject(defaultTask3);
+      defaultTask3.setId(2);
+      projectManager.addTaskToProject(defaultProject.getId(), defaultTask3);
     }
   }
 }
