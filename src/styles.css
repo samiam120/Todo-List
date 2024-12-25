@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
 }
 
 body,
@@ -14,8 +15,9 @@ html {
 .container {
   height: 100%;
   display: flex;
-  padding: 20px;
 }
+
+
 
 .mainContent {
   flex: 1;
@@ -29,13 +31,24 @@ html {
   padding: 20px;
 }
 
+.mainContent p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.mainContent button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
 .taskContainer {
   width: 100%;
   margin-top: 20px;
 }
 
 .sideBar {
-  width: 250px;
+  width: 400px;
   height: 100%;
   padding: 15px;
   background-color: #eee8d5;
@@ -50,7 +63,7 @@ ul {
   padding-left: 20px;
 }
 
-.Projects h3 {
+.Projects h3{
   font-size: 1.5rem;
   text-decoration: underline;
   margin-top: 1rem;
@@ -113,7 +126,8 @@ ul {
 
 .deleteBtn {
   position: relative;
-  left: 20px;
+  left: 50px;
+  color: #586e75;
 }
 
 .form-container {
@@ -122,7 +136,7 @@ ul {
   background: #fdf6e3;
   border: 1px solid #d3c7b7;
   padding: 32px;
-  font-size: 14px;
+  font-size: 16px;
   color: #586e75;
   display: flex;
   flex-direction: column;
@@ -184,11 +198,12 @@ button:hover {
   transform: scale(1.05);
 }
 
-button.add-btn {
+button.add-btn{
   background-color: #2aa198;
 }
 
 button.close-btn {
-  background-color: #cb4b16;
+  background-color: #ffb5b5;
+
 }
 
