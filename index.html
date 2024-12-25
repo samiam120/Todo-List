@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+  <script defer src="bundle.js"></script></head>
+  <body>
+    <div class="container">
+      <div class="sideBar">
+        <button id="add-Project" class="add-btn">add Project</button>
+
+        <div class="Projects">
+          <h3>My Projects</h3>
+          <ul class="project-list"></ul>
+        </div>
+        <dialog id="project-Dialog">
+          <div class="form-container">
+            <form action="" class="form">
+              <div class="form-group">
+                <label for="project-Title">Project Name</label>
+                <input type="text" id="project-Title" required />
+              </div>
+              <button id="project-dialog-btn" class="add-btn">add Project</button>
+            </form>
+            <button class="closeProject close-btn">close</button>
+          </div>
+        </dialog>
+      </div>
+      <div class="mainContent">
+        
+        <div class="taskContainer">
+                      <button class="addTaskBtn add-btn">add Task</button>
+
+          <div class="addTaskBtnContainer">
+          </div>
+          <div class="dialogContainer">
+            <dialog id="task-Dialog">
+              <div class="form-container">
+                <form action="" class="form">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input
+                      id="title"
+                      type="text"
+                      placeholder="Title"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">description</label>
+                    <input
+                      id="description"
+                      type="text"
+                      placeholder="description"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" />
+                  </div>
+                  <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                      <option value="low">low</option>
+                      <option value="medium">medium</option>
+                      <option value="high">high</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="addTask add-btn" >Add Task</button>
+                </form>
+                <button class="close close-btn">cancel</button>
+              </div>
+            </dialog>
+          </div>
+          <div class="taskList"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
