@@ -4,7 +4,7 @@ const { plugins } = require("html-webpack-plugin");
 const { watchFile } = require("fs");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
